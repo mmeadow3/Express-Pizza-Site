@@ -13,6 +13,9 @@ can also have route specific middleware by providing a path
 
 req, res, next ------ the next makes it middleware
 
+
+
+////////////////////////////////////////////////////
 /////////////////// DEPLOYING////// must have gitHub support
 heroku create
 git remote -v
@@ -29,3 +32,19 @@ git remote -v
   "node": "6"
 },
 //////////////////////////////
+
+git commit -m "message"
+git push heroku master
+heroku open
+
+
+////////////////////////
+may have to add//////////
+"postinstall": "bower install"
+
+in package.json
+
+
+
+
+heroku logs ------ will print heroku errors
