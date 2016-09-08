@@ -1,0 +1,14 @@
+This is how to mimic an http server in the command line
+
+app.use((req, res, next) => {
+  console.log( "[", new Date().toString(), "]" );
+  console.log(req.method, "/" , req.headers["user-agent"]);
+  next()
+})
+/////////////////////////////////////////////////////////////
+
+middleware is used to respond to a request object then send it back
+
+can also have route specific middleware by providing a path
+
+req, res, next ------ the next makes it middleware
