@@ -12,3 +12,20 @@ middleware is used to respond to a request object then send it back
 can also have route specific middleware by providing a path
 
 req, res, next ------ the next makes it middleware
+
+/////////////////// DEPLOYING////// must have gitHub support
+heroku create
+git remote -v
+
+///////make sure the start script is in the package.json//////////
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node server.js"
+}
+//////////////////////////////////////////
+    Must include the engine for node
+/////////////////////////////////////////
+"engines": {
+  "node": "6"
+},
+//////////////////////////////
