@@ -7,7 +7,12 @@ const app = express(); /////creates instance of express server
 const bodyParser = require("body-parser"); ////npm installed
 const { cyan, red } = require('chalk') ////just for some styling
 
+//////////adding mongo/////////////////////////////////////////////////////////////
+const { connect } = require("./database")
+// connect(MONGODB_URL).then(mydb => db = mydb).catch(console.error)
+////////////////////////////////////////////////////////////////////////////////////////////////
 const routes = require("./routes/")
+
 
 // PORT=1337 node server.js   in terminal to set temporary port
 const port = process.env.PORT || 3000
@@ -79,7 +84,16 @@ app.use((
     console.error(err.stack)
   }
 )
+connect()
+  .then(() => {
+    app.listen(port, ()=>
+    console.log(`listening on port ${port}`)
+    )
+  })
+  .catch(console.error)
 
-const server = app.listen(port, () => {
-  console.log(`Express server listening on port ${port}`);
-})
+
+
+// const server = app.listen(port, () => {
+//   console.log(`Express server listening on port ${port}`);
+// })

@@ -48,3 +48,11 @@ in package.json
 
 
 heroku logs ------ will print heroku errors
+
+
+//////////Adding DB////////////////
+mongod, nodemon, mongo ----- have three tabs in the terminal
+
+npm install mongo --save
+
+const MONGODB_URL = "mongodb://localhost:27017/pugspizza"  //////need to make a new db every project
