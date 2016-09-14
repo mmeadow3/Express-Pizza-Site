@@ -5,7 +5,8 @@ const router = Router()
 
 const Contact  = require("../models/contact")
 const Order = require("../models/order")
-
+const Size = require("../models/size")
+const Topping = require("../models/topping")
 
 
 router.get('/', function (req, res) { //////getting the requested page
@@ -17,14 +18,18 @@ router.get('/', function (req, res) { //////getting the requested page
 .get("/contact", function (req, res){
   res.render("contact", {title: "contact"})
 })
-.get("/order", function (req, res){
-  res.render("order", { page: "order"})
-})
-.post("/order", function (req, res){
-  const msg = new Order(req.body)
-    msg.save()
-    .then(() => res.redirect('/'))
-    .catch(() => res.send('BAD'))
+
+router.get('/order', (req, res) =>
+  Promise.all([
+    Size.find().sort({ inches: 1}),
+    Topping.find().sort({ name: 1})
+  ]).then(([sizes, toppings]) => res.render('order', { page: 'Order', sizes, toppings })))
+
+.post("/order", function (req, res, next){
+  Order
+  .create(req.body)
+  .then(() => res.redirect('/'))
+  .catch(next)
 })
 
 // const mongoose = require("mongoose");
@@ -41,11 +46,11 @@ router.get('/', function (req, res) { //////getting the requested page
 //   .catch(() => res.send("Error"))
 // })
 
-router.post('/contact', (req, res) => {
-  const msg = new Contact(req.body)
-    msg.save()
-    .then(() => res.redirect('/'))
-    .catch(() => res.send('BAD'))
+router.post('/contact', (req, res, next) => {
+  Contact
+  .create(req.body)
+  .then(() => res.redirect('/'))
+  .catch(next)   /////passing next will catch error object
 })
 
 router.get("/404", function (req, res){

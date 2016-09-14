@@ -18,11 +18,15 @@ block content
             .form-group
               label(for='size') Size
               select.form-control#size(name="size")
-                option
-                option(value="12") small
-                option(value="14") medium
-                option(value="16") large
-                option(value="18") Extra-large
+                option select a size
+                each size in sizes
+                  option(value=size.inches) #{size.name}: #{size.inches}
+            .form-group
+              label(for='topping') Toppings
+              select.checkbox#topping(name="topping")
+                option Select a Topping
+                each topping in toppings
+                  option(value=topping.name) #{topping.name}
             .order-form__submit
               a.btn.btn-danger.btn-lg(href="/") Cancel
               input.btn.btn-success.btn-lg(type='submit' value='Submit')
