@@ -1,0 +1,32 @@
+extends partials/layout
+
+block content
+
+        .heading
+          h1 Order
+        .order-form
+          form(method="POST")
+            .form-group
+              label(for='name') Name
+              input.form-control#name(type='text', name="name", placeholder='John Doe')
+            .form-group
+              label(for='email') Email Address
+              input.form-control#email(type='email', name="email", placeholder='you@example.com')
+            .form-group
+              label(for='phone') Phone Number
+              input.form-control#phone(type='phone', name="phone", placeholder='234-567-8901')
+            .form-group
+              label(for='size') Size
+              select.form-control#size(name="size")
+                option select a size
+                each size in sizes
+                  option(value=size.inches) #{size.name}: #{size.inches}
+            .form-group
+              label(for='topping') Toppings
+              select.checkbox-inline#topping(name="topping")
+                option Select a Topping
+                each topping in toppings
+                  option(value=topping.name) #{topping.name}
+            .order-form__submit
+              a.btn.btn-danger.btn-lg(href="/") Cancel
+              input.btn.btn-success.btn-lg(type='submit' value='Submit')
