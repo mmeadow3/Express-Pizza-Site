@@ -1,0 +1,28 @@
+extends partials/layout
+
+block content
+
+        .heading
+          h1 Order
+        .order-form
+          form(method="POST")
+            .form-group
+              label(for='name') Name
+              input.form-control#name(type='text', name="name", placeholder='John Doe')
+            .form-group
+              label(for='email') Email Address
+              input.form-control#email(type='email', name="email", placeholder='you@example.com')
+            .form-group
+              label(for='phone') Phone Number
+              input.form-control#phone(type='phone', name="phone", placeholder='234-567-8901')
+            .form-group
+              label(for='size') Size
+              select.form-control#size(name="size")
+                option
+                option(value="12") small
+                option(value="14") medium
+                option(value="16") large
+                option(value="18") Extra-large
+            .order-form__submit
+              a.btn.btn-danger.btn-lg(href="/") Cancel
+              input.btn.btn-success.btn-lg(type='submit' value='Submit')
